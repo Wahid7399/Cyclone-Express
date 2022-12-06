@@ -28,6 +28,8 @@ const {user,dispatch}=useAuthContext();
     <div >
  <Navbar/>
 
+
+
   <Routes>
     <Route path='/home' element={ user ? <Home/>:< Navigate to="/Login"/>}/>
     <Route path='/cart' element={ user ? <Cart/>:< Navigate to="/Login"/>}/>
