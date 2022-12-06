@@ -21,11 +21,9 @@ function App() {
 
 
 const {user,dispatch}=useAuthContext();
-  useEffect(() => {
-    axios.get("http://localhost:8000/getsession").then((res) => {
-    dispatch({type:"LOGIN",payload:res.data});
-    });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({type:"restore",payload:JSON.parse(localStorage.getItem("AuthContext"))})
+  // }, []);
   return (
     <div >
  <Navbar/>

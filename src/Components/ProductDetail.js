@@ -58,7 +58,7 @@ pauseOnHover
             if(item==myimage)
             bord="5px solid #555";
 
-         return <img style={{ border:bord ,margin:"2px 2px",cursor:"pointer"}} src={item} width="60px" height="60px" onClick={(()=> {
+         return <img key={i} style={{ border:bord ,margin:"2px 2px",cursor:"pointer"}} src={item} width="60px" height="60px" onClick={(()=> {
             setmyimage(item);
             
         })} />

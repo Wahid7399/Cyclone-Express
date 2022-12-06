@@ -47,7 +47,7 @@ pauseOnHover
                     <Avatar  alt="Remy Sharp" src={user?user.avatar:""} />
                     {user&&<LogoutIcon onClick={(async ()=>{
                         dispatch({type:"LOGOUT"});
-                       await  axios.get("http://localhost:8000/destroysession").then((res)=>{})
+                      localStorage.removeItem("AuthContext")
                          
 
                     navigate('/Login')
