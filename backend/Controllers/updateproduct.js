@@ -16,9 +16,13 @@ arr.push('/products/'+a.filename)
         }
       })
     var data=req.body;
-      con.query(`insert into product(title,	description	,category,sprice,	bprice,	quantity,avatar,images) values(
-      '${data.title}','${data.description}','${data.category}',${data.sprice},'${data.bprice}','${data.quantity}','/products/${req.files[0].filename}','${JSON.stringify(arr)}'
-          )`, (err, rows, fields) => {
+let str="";
+if(req.files.length!=0){
+    str+=",avatar = '/products/"+req.files[0].filename+"'";
+}
+
+      con.query(`update product set title='${data.title}',	description='${data.description}'	,category ='${data.category}',sprice=${data.sprice},	bprice ='${data.bprice}',quantity='${data.quantity}'`+str+" where id = "+req.params.id
+      , (err, rows, fields) => {
         if (err) throw err;
       })
       con.end()

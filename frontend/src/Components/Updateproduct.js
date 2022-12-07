@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import FormControl from '@mui/material/FormControl';
 import { Button, CardContent, FormHelperText, Input, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -9,13 +8,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-
-export default function InsertProduct() {
+export default function Updateproduct() {
+    var obj=JSON.parse(window.sessionStorage.getItem('productdata'));
     var navigate = useNavigate();
-    let [title, settitle] = useState();
-    let [price, setprice] = useState();
-    let [category, setcategory] = useState();
-    let [description, setdescription] = useState();
+    let [title, settitle] = useState(obj.title);
+    let [price, setprice] = useState(obj.sprice);
+    let [category, setcategory] = useState(obj.category);
+    let [description, setdescription] = useState(obj.description);
     let [mainimg, setmainimg] = useState();
     let [extra_img, setextraimg] = useState();
 
@@ -53,7 +52,7 @@ export default function InsertProduct() {
 
                 <ToastContainer />
 
-                <form action="http://localhost:8000/product/insert" method="post" encType='multipart/form-data'  
+                <form action={`http://localhost:8000/product/update/${obj.id}`} method="post" encType='multipart/form-data'  
                 //  onSubmit={(e) => submitHandler(e)}
                 >
                     <Typography sx={{ marginTop: '-30%', marginBottom: '20%' }} varient="h1" fontSize={'40px'}><b>Add Product</b></Typography>
@@ -62,6 +61,7 @@ export default function InsertProduct() {
                         name="title"
                         type="text"
                         placeholder="Title"
+                        defaultValue={obj.title}
                         onChange={((e) => settitle(e.target.value))}
                         // pass down to FormLabel as children
                         label="Title"
@@ -72,7 +72,8 @@ export default function InsertProduct() {
                     <br />
                     <TextField sx={{}}
                         name="bprice"
-                        type="number"
+                        type="text"
+                        defaultValue={obj.bprice}
                         onChange={((e) => setprice(e.target.value))}
                         placeholder="Buying Price $"
                         label="Buying Price $"
@@ -83,7 +84,8 @@ export default function InsertProduct() {
                     <br />
                     <TextField sx={{}}
                         name="sprice"
-                        type="number"
+                        defaultValue={obj.sprice}
+                        type="text"
                         onChange={((e) => setprice(e.target.value))}
                         placeholder="Selling Price $"
                         label="Selling Price $"
@@ -94,7 +96,8 @@ export default function InsertProduct() {
                     <br />
                     <TextField sx={{}}
                         name="quantity"
-                        type="number"
+                        type="text"
+                        defaultValue={obj.quantity}
                         onChange={((e) => setprice(e.target.value))}
                         placeholder="Quantity"
                         label="Quantity"
@@ -106,6 +109,7 @@ export default function InsertProduct() {
                     <TextField sx={{}}
                         name="description"
                         type="text"
+                        defaultValue={obj.description}
                         onChange={((e) => setdescription(e.target.value))}
                         placeholder="Description"
                         label="Description"
@@ -127,7 +131,7 @@ export default function InsertProduct() {
        
         onChange={((e)=>{setcategory(e.target.value)})}
       >
-        <MenuItem value="">
+        <MenuItem value="" defaultValue={obj.category}>
           <em>None</em>
         </MenuItem>
         <MenuItem value={"clothes"}>Clothes</MenuItem>
@@ -143,8 +147,8 @@ export default function InsertProduct() {
                     
                     <label className='btn' id="file">Choose Images</label>
                     <br />
-                    <input required name="productphotos" style={{marginLeft:"23px"}} type="file" id='file'  multiple />
-                    <Button onClick={((e)=>{submitHandler(e)})} type='submit' variant='contained' size='large' sx={{ marginTop: "20%" }} >ADD PRODUCT</Button>
+                    <input name="productphotos" style={{marginLeft:"23px"}} type="file" id='file'  multiple />
+                    <Button onClick={((e)=>{submitHandler(e)})} type='submit' variant='contained' size='large' sx={{ marginTop: "20%" }} >Update PRODUCT</Button>
                 </form>
             </Box>
         </>

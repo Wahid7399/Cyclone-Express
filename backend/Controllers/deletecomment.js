@@ -10,10 +10,10 @@ module.exports= async (req, res) => {
       con.connect()
      
     var data=req.body;
-     await con.query(`delete from product where id = ${req.params.id }`, (err, rows, fields) => {
-      
+      con.query(`delete from comments where id = ${req.params.id}`, (err, rows, fields) => {
+       
         if (err) throw err;
       })
       con.end()
-     res.redirect("http://localhost:3000/home")
+     res.send("deleted")
   }

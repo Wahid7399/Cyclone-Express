@@ -64,6 +64,7 @@ app.get("/getsession",(req,res)=>{
 
 try{
 
+
 app.use("/user",router);
 app.use("/product",productrouter);
 }

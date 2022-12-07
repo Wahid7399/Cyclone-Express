@@ -15,6 +15,7 @@ import { Verification } from './Components/Verification';
 import { useAuthContext } from './Contexts/useAuthContext';
 import Cart from './Components/Cart';
 import {Footer} from './Components/Footer';
+import Updateproduct from './Components/Updateproduct';
 
 
 function App() {
@@ -40,8 +41,9 @@ const {user,dispatch}=useAuthContext();
     <Route path='/' element={user ? <Home/>:< Navigate to="/Login"/>}/>
     <Route path='/Login' element={ !user ? <Login/>:< Navigate to="/home"/>}/>
     <Route path='/Signup' element={!user ?<Signup/>:< Navigate to="/home"/>}/>
-    <Route path='/insertproduct' element={<InsertProduct/>}/>
-    <Route path='/ProductDetail/:id' element={< ProductDetail />}/>
+    <Route path='/insertproduct' element={user&&user.admin?<InsertProduct/>:< Navigate to="/home"/>} />
+    <Route path='/Updateproduct/:id' element={user&&user.admin?<Updateproduct/>:< Navigate to="/home"/>} />
+    <Route path='/ProductDetail/:id' element={user ?< ProductDetail />:< Navigate to="/Login"/>}/>
     <Route/>
   </Routes>
 

@@ -1,10 +1,12 @@
 const express=require ("express")
 const multer = require("multer");
 const addcomment = require("../Controllers/addcomment");
+const deletecomment = require("../Controllers/deletecomment");
 const deleteproduct = require("../Controllers/deleteproduct");
 const getcomment = require("../Controllers/getcomment");
 const insertproduct = require("../Controllers/insertproduct");
 const sendproducts = require("../Controllers/sendproducts");
+const updateproduct = require("../Controllers/updateproduct");
 const router = express.Router()
 
 var storage = multer.diskStorage({
@@ -33,17 +35,40 @@ router.post("/insert",
 insertproduct(req,res);
 }
 )
+
+
+router.post("/update/:id",
+(req,res,next)=>{
+    upload(req,res,function(err) {
+     
+        if(err) {
+          console.log(err)
+            return res.end("Error uploading file.");
+        }
+        next();
+    }
+    );
+},(req,res)=>{
+updateproduct(req,res);
+}
+)
+
 router.get('/get/:page',(req,res)=>{
   sendproducts(req,res)
 })
 
 router.get('/delete/:id',(req,res)=>{
+  
   deleteproduct(req,res)
+})
+router.get('/deletecomment/:id',(req,res)=>{
+  deletecomment(req,res)
 })
 
 router.post('/addcomment',(req,res)=>{
   addcomment(req,res)
 })
+
 router.post('/getcomment',(req,res)=>{
   getcomment(req,res)
 })
