@@ -50,6 +50,7 @@ export default function Home() {
 
 
        {/* pagination code */}
+       {state.length!=0&&
       <Stack sx={{ margin: "5px auto", alignItems: "center" }} bgcolor="grey" spacing={2}>
         <Pagination onChange={handleChange} size='large'
           count={pgcount}
@@ -60,7 +61,7 @@ export default function Home() {
             />
           )}
         />
-      </Stack>
+      </Stack>}
 
 
 

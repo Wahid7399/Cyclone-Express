@@ -40,6 +40,7 @@ pauseOnHover
                     <Typography variant="h6" onClick={(()=>navigate('/home'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Home</Typography>
                     <Typography variant="h6" onClick={(()=>navigate('/Login'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Login</Typography>
                     <Typography variant="h6" onClick={(()=>navigate('/Signup'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >signup</Typography>
+                    {user&&user.admin&&<Typography variant="h6" onClick={(()=>navigate('/insertproduct'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Add Product</Typography>}
                     <ShoppingCartIcon onClick={(()=>user?navigate('/Cart'):navigate('/Login'))} />
                     </Box>
                     
@@ -47,7 +48,7 @@ pauseOnHover
                     <Avatar  alt="Remy Sharp" src={user?user.avatar:""} />
                     {user&&<LogoutIcon onClick={(async ()=>{
                         dispatch({type:"LOGOUT"});
-                      localStorage.removeItem("AuthContext")
+                      sessionStorage.clear();
                          
 
                     navigate('/Login')

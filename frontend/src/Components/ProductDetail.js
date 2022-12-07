@@ -22,7 +22,7 @@ import { useAuthContext } from '../Contexts/useAuthContext';
 
 export default function Card() {
 
-    var obj=JSON.parse(window.localStorage.getItem('productdata'));
+  var obj=JSON.parse(window.sessionStorage.getItem('productdata'));
 
 var navigate=useNavigate();
 

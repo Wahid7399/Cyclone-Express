@@ -33,6 +33,7 @@ const connection = mysql.createConnection(options);
 const sessionStore = new MySQLStore({}, connection);
 
 app.use(
+
     session({
         secret: 'cookie_secret',
         resave: false,
@@ -46,6 +47,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.static( path.join(__dirname, './public')))
+
 app.use('/user', express.static('public'))
 app.use('/product', express.static('public'))
 app.get("/getsession",(req,res)=>{
@@ -58,9 +60,14 @@ app.get("/getsession",(req,res)=>{
 
 
 
+try{
 
 app.use("/user",router);
 app.use("/product",productrouter);
+}
+catch(err){
+    console.log(err);
+}
 
 
 
@@ -71,6 +78,5 @@ app.use("/product",productrouter);
 app.get("/destroysession",(req,res)=>{
     destroysess(req,res)
 })
-
-
 app.listen(8000);
+

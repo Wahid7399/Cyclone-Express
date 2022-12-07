@@ -4,12 +4,14 @@ export const AuthContext = createContext()
 
 function setcartdata(olddata,newdata){
   var flag=true;
-      olddata.map((a,i)=>{
+     if(olddata) 
+     olddata.map((a,i)=>{
 if(newdata.id==a.id)
 {flag=false;
   olddata[i].count+=newdata.count;
 }
-      })
+})
+
       if(flag)
      olddata=[...olddata,newdata];
 
@@ -18,7 +20,7 @@ return olddata;
 
 function decrement(olddata,newdata){
   var temp=[]
-      olddata.map((a,i)=>{
+  if(olddata)   olddata.map((a,i)=>{
 if(newdata.id==a.id)
 {
   olddata[i].count=newdata.count;
@@ -38,7 +40,7 @@ return temp;
 
 function increment(olddata,newdata){
 
-olddata.map((a,i)=>{
+  if(olddata) olddata.map((a,i)=>{
 if(newdata.id==a.id)
 {
   olddata[i].count=newdata.count;
@@ -78,11 +80,13 @@ export const AuthContextProvider = ({ children }) => {
     cart:[]
   })
 useEffect(()=>{
-  dispatch({type:"restore",payload:JSON.parse(localStorage.getItem("AuthContext"))})
-},[])
+  if(sessionStorage.getItem("AuthContext"))
+  dispatch({type:"restore",payload:JSON.parse(sessionStorage.getItem("AuthContext"))})
+  else
+  dispatch({type:"restore",payload:{user:null,cart:[]}})},[])
   console.log('AuthContext state:', state)
   if(state.user){
-  localStorage.setItem("AuthContext",JSON.stringify(state));
+  sessionStorage.setItem("AuthContext",JSON.stringify(state));
   }
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

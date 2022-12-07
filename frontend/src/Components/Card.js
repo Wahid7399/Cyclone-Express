@@ -10,9 +10,11 @@ import {Route} from 'react-router-dom'
 import ProductDetail from './ProductDetail'
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
+import { useAuthContext } from '../Contexts/useAuthContext';
+import axios from 'axios';
 
 export default  function Card(props) {
-     
+     let {user}=useAuthContext();
 let navigate=useNavigate();
 var obj=props.value;
     return (
@@ -40,11 +42,16 @@ var obj=props.value;
           </CardContent>
           <div  sx={{justifyContent:'center', position: 'absolute', bottom: '1px'}}>
                <Button sx={{bottom:"3px"}} onClick={async ()=>{
-               await localStorage.setItem('productdata',JSON.stringify(obj));
+               await sessionStorage.setItem('productdata',JSON.stringify(obj));
                 
                 navigate(`/ProductDetail/${(obj.id)}`)
             }} variant='contained' >ORDER NOW
                </Button>
+{user.admin&&
+               <Button sx={{bottom:"3px"}} onClick={async ()=>{
+               axios.get(`http://localhost:8000/product/delete/${obj.id}`)
+            }} color="error" variant='contained' >Delete
+               </Button>}
           </div>
 
         </Cards>

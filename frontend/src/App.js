@@ -14,17 +14,22 @@ import Signup from './Components/Signup';
 import { Verification } from './Components/Verification';
 import { useAuthContext } from './Contexts/useAuthContext';
 import Cart from './Components/Cart';
+import {Footer} from './Components/Footer';
 
 
 function App() {
   // const [post, setPost] = useState(null);
 
 const {user,dispatch}=useAuthContext();
-  // useEffect(() => {
-  //   dispatch({type:"restore",payload:JSON.parse(localStorage.getItem("AuthContext"))})
-  // }, []);
+  useEffect(() => {
+    if(sessionStorage.getItem("AuthContext"))
+    dispatch({type:"restore",payload:JSON.parse(sessionStorage.getItem("AuthContext"))})
+    else
+    dispatch({type:"restore",payload:{user:null,cart:[]}})
+  }, []);
   return (
-    <div >
+    <>
+    <div style={{height:"100%"}} >
  <Navbar/>
 
   <Routes>
@@ -39,8 +44,10 @@ const {user,dispatch}=useAuthContext();
     <Route path='/ProductDetail/:id' element={< ProductDetail />}/>
     <Route/>
   </Routes>
-  
+
+    <Footer/>
     </div>
+    </>
   );
 }
 

@@ -19,7 +19,7 @@ export default function TextareaValidator() {
     var { user } = useAuthContext()
     const [comments, setcomments] = React.useState();
 
-    var obj = JSON.parse(window.localStorage.getItem('productdata'));
+    var obj = JSON.parse(window.sessionStorage.getItem('productdata'));
     const [italic, setItalic] = React.useState(false);
     const [fontWeight, setFontWeight] = React.useState('normal');
     const [anchorEl, setAnchorEl] = React.useState(null);

@@ -58,7 +58,7 @@ export default function Cart() {
             <TableCell align="right">Sum</TableCell>
           </TableRow>
         </TableHead>
-        {cart.map((row) =>{
+        {cart&&cart.map((row) =>{
             sum+=row.count*row.price;
             return (
             <TableRow key={row.desc}>

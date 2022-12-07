@@ -1,6 +1,7 @@
 const express=require ("express")
 const multer = require("multer");
 const addcomment = require("../Controllers/addcomment");
+const deleteproduct = require("../Controllers/deleteproduct");
 const getcomment = require("../Controllers/getcomment");
 const insertproduct = require("../Controllers/insertproduct");
 const sendproducts = require("../Controllers/sendproducts");
@@ -34,6 +35,10 @@ insertproduct(req,res);
 )
 router.get('/get/:page',(req,res)=>{
   sendproducts(req,res)
+})
+
+router.get('/delete/:id',(req,res)=>{
+  deleteproduct(req,res)
 })
 
 router.post('/addcomment',(req,res)=>{
