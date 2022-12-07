@@ -47,11 +47,11 @@ var obj=props.value;
                 navigate(`/ProductDetail/${(obj.id)}`)
             }} variant='contained' >ORDER NOW
                </Button>
-{user.admin&&
-               <Button sx={{bottom:"3px"}} onClick={async ()=>{
+{/* {user.admin&&
+               <Button sx={{bottom:"3px"}} onClick={()=>async ()=>{
                axios.get(`http://localhost:8000/product/delete/${obj.id}`)
             }} color="error" variant='contained' >Delete
-               </Button>}
+               </Button>} */}
           </div>
 
         </Cards>

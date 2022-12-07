@@ -5,11 +5,13 @@ async function getcount(){
   const sequelize = new Sequelize('database3021', 'wahid123', '12345678', {
     host: 'db4free.net',
     dialect:'mysql' 
+
   });
    const result1=await sequelize.query("select count(*) as count from product", {
     nest: true,
     type: QueryTypes.SELECT
   })
+  sequelize.close();
   mycount=result1[0].count;
   return result1[0].count;
 }
@@ -22,6 +24,7 @@ await getcount()
       host: 'db4free.net',
       dialect:'mysql' 
     });
+
   //  const result1=await sequelize.query("select count(*) as count from product", {
   //   nest: true,
   //   type: QueryTypes.SELECT
@@ -39,9 +42,11 @@ await getcount()
         type: QueryTypes.SELECT
       });
 
-      
+      sequelize.close();
     res.send({records,totalPages:totalPages})
   } catch (error) {
     res.send({records:[],totalPages:1})
   }
  }
+
+ 
