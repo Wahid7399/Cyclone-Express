@@ -69,17 +69,22 @@ var obj=props.value;
                  navigate(`/ProductDetail/${(obj.id)}`)
              }} variant='contained' >ORDER NOW
                 </Button>
-               <Button sx={{bottom:"3px"}} onClick={async ()=>{
-              await axios.get(`http://localhost:8000/product/delete/${obj.id}`)
-              toast.success('Product has been deleted', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            })
+               <Button sx={{bottom:"3px"}} onClick={ ()=>{
+               axios.get(`http://localhost:8000/product/delete/${obj.id}`)
+              
+               
+               toast.success('Product has been deleted', {
+                 position: "top-right",
+                 autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+                navigate('/Login');
+           
+                
             }} color="error" variant='contained' >Delete
                </Button>
                </ButtonGroup>

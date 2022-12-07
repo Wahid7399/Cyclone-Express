@@ -15,5 +15,5 @@ module.exports= async (req, res) => {
         if (err) throw err;
       })
       con.end()
-     res.redirect("http://localhost:3000/home")
+     res.send({flag:true})
   }
