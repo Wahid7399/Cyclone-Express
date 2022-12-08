@@ -10,7 +10,7 @@ import Card from './Card';
 
 export default function Home() {
   let [state, setstate] = useState([]);
-
+let[flag,setflag]=useState(false);
 
   let [pgcount, setpgcount] = useState(1);
 
@@ -23,7 +23,7 @@ export default function Home() {
       setstate(res.data.records)
       setpgcount(res.data.totalPages);
     })
-  }, [url]);
+  }, [url,flag]);
 
   if (state == undefined || state == []) {
     return <h1>LOADING.....</h1>
@@ -40,7 +40,7 @@ export default function Home() {
 
       <div style={{ display: 'flex', flexWrap: "wrap" }}>
         {state.map((obj, i) => {
-          return <Card key={i} value={obj} />
+          return <Card key={i} value={obj} flag={setflag} />
         }
         )
         }

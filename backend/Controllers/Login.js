@@ -13,8 +13,8 @@ module.exports = async function (req, res) {
       type: QueryTypes.SELECT
     });
     if (records.length != 0) {
-      req.session.user = { email: req.body.email, id: records[0].ID, avatar: records[0].avatar, admin: false };
-      res.send({ found: true, id: records[0].ID,email: req.body.email ,avatar: records[0].avatar, admin: false })
+      req.session.user = { email: req.body.email, id: records[0].ID, avatar: records[0].avatar, admin: false,verified:records[0].verified };
+      res.send({ found: true, id: records[0].ID,email: req.body.email ,avatar: records[0].avatar, admin: false,verified:records[0].verified })
     
     } else
       res.send({ found: false })
@@ -25,8 +25,8 @@ module.exports = async function (req, res) {
       type: QueryTypes.SELECT
     });
     if (records.length != 0) {
-      req.session.user = { email: req.body.email, id: records[0].ID, avatar: records[0].avatar, admin: true };
-      res.send({ found: true, email: req.body.email,id: records[0].id, avatar: records[0].avatar, admin: true })
+      req.session.user = { email: req.body.email, id: records[0].ID, avatar: records[0].avatar, admin: true,verified:records[0].verified };
+      res.send({ found: true, email: req.body.email,id: records[0].id, avatar: records[0].avatar, admin: true,verified:records[0].verified })
     } else
       res.send({ found: false })
   }

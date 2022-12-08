@@ -17,8 +17,8 @@ module.exports= (req, res) => {
         });
       con.connect()
     var data=req.body;
-      con.query(`insert into user(name,email,password,pin,avatar) values(
-      '${data.name}','${data.email}','${data.password}',${pin},'${data.avatar}'
+      con.query(`insert into user(name,email,Gender,Age,password,pin,avatar) values(
+      '${data.name}','${data.email}','Male',30,'${data.password}',${pin},'${data.avatar}'
           )`, (err, rows, fields) => {
         if (err) throw err
         sendpin(pin,data.email);

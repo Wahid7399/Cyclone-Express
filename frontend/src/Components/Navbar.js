@@ -38,9 +38,12 @@ pauseOnHover
                     </Box>
                     <Box sx={{ width:"40%", display:"flex",justifyContent:"space-between" }}>
                     <Typography variant="h6" onClick={(()=>navigate('/home'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Home</Typography>
+                    <Typography variant="h6" onClick={(()=>navigate(`/chat/${user.id}`))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Chat</Typography>
                     <Typography variant="h6" onClick={(()=>navigate('/Login'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Login</Typography>
                     <Typography variant="h6" onClick={(()=>navigate('/Signup'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >signup</Typography>
-                    {user&&user.admin&&<Typography variant="h6" onClick={(()=>navigate('/insertproduct'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Add Product</Typography>}
+                    {user&&user.admin&&<><Typography variant="h6" onClick={(()=>navigate('/insertproduct'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Add Product</Typography>
+                     <Typography variant="h6" onClick={(()=>navigate('/user'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Users</Typography>
+                    </>}
                     <ShoppingCartIcon onClick={(()=>user?navigate('/Cart'):navigate('/Login'))} />
                     </Box>
                     

@@ -72,7 +72,7 @@ var obj=props.value;
                <Button sx={{bottom:"3px"}} onClick={ ()=>{
                axios.get(`http://localhost:8000/product/delete/${obj.id}`)
               
-               
+               navigate('/Login');
                toast.success('Product has been deleted', {
                  position: "top-right",
                  autoClose: 2000,
@@ -82,8 +82,8 @@ var obj=props.value;
                     draggable: true,
                     progress: undefined,
                 })
-                navigate('/Login');
-           
+                
+               
                 
             }} color="error" variant='contained' >Delete
                </Button>

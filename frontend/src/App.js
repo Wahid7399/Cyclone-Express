@@ -16,18 +16,31 @@ import { useAuthContext } from './Contexts/useAuthContext';
 import Cart from './Components/Cart';
 import {Footer} from './Components/Footer';
 import Updateproduct from './Components/Updateproduct';
+import Chat from './Components/chat/Chat';
+import { useNavigate } from 'react-router';
+import User from './Components/User';
+import Verify from './Components/Verify';
 
 
 function App() {
   // const [post, setPost] = useState(null);
 
+  let navigate=useNavigate();
 const {user,dispatch}=useAuthContext();
   useEffect(() => {
     if(sessionStorage.getItem("AuthContext"))
     dispatch({type:"restore",payload:JSON.parse(sessionStorage.getItem("AuthContext"))})
     else
     dispatch({type:"restore",payload:{user:null,cart:[]}})
+    // if(user){
+    //   if(!user.admin)
+    //   if(!user.verified){
+    // navigate('/verify');
+    //   }
+    // }
   }, []);
+
+
   return (
     <>
     <div style={{height:"100%"}} >
@@ -36,19 +49,24 @@ const {user,dispatch}=useAuthContext();
   <Routes>
     <Route path='/home' element={ user ? <Home/>:< Navigate to="/Login"/>}/>
     <Route path='/cart' element={ user ? <Cart/>:< Navigate to="/Login"/>}/>
+    <Route path='/verify' element ={<Verify/>} />
     <Route path='/Verification' element={ user ? <Verification/>:< Navigate to="/Login"/>}/>
     <Route path='/ForgotPassword' element={ user ? <ForgotPassword/>:< Navigate to="/Login"/>}/>
     <Route path='/' element={user ? <Home/>:< Navigate to="/Login"/>}/>
     <Route path='/Login' element={ !user ? <Login/>:< Navigate to="/home"/>}/>
     <Route path='/Signup' element={!user ?<Signup/>:< Navigate to="/home"/>}/>
     <Route path='/insertproduct' element={user&&user.admin?<InsertProduct/>:< Navigate to="/home"/>} />
+    <Route path='/user' element={user&&user.admin?<User/>:< Navigate to="/home"/>} />
     <Route path='/Updateproduct/:id' element={user&&user.admin?<Updateproduct/>:< Navigate to="/home"/>} />
     <Route path='/ProductDetail/:id' element={user ?< ProductDetail />:< Navigate to="/Login"/>}/>
+    <Route path='/chat/:id' element={user ? <Chat/>:< Navigate to="/Login"/>}/>
+   
     <Route/>
   </Routes>
 
-    <Footer/>
+    <Footer/> 
     </div>
+   
     </>
   );
 }

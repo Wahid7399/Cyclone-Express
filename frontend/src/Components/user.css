@@ -1,0 +1,47 @@
+.listview {
+    list-style-type: none;
+    margin: 3px;
+    font-size: larger;
+    font-family: sans-serif;
+  }
+  
+  .listview li {
+    padding: .7em 10px;
+    background-color: burlywood; 
+    border: 1px solid rgb(197, 142, 142);
+    max-width: 90%;
+    cursor: hand;
+  }
+  
+  .listview li:nth-child(n+2) {
+    border-top: 0;
+  }
+  
+  .listview li:hover { 
+      background-color: white;    
+  }
+  
+  .item{
+    float: left;
+    width: 20%;
+    text-align: center; 
+  }
+  
+  .avatar {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  
+  
+  .titulo {
+    text-align: center;
+    font-family: sans-serif;
+    color: #444;
+  }
+  
+  .container {
+    width: 80%;
+    margin: auto;
+  }

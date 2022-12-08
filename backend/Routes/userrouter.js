@@ -10,6 +10,11 @@ const verified = require('../Controllers/verified')
 const resetpassword = require('../Controllers/resetpassword')
 const createpdf = require('../Controllers/createpdf')
 const sendreport = require('../Controllers/sendreport')
+const usersend = require('../Controllers/usersend')
+const userget = require('../Controllers/userget')
+const getallmsg = require('../Controllers/getallmsg')
+const getalluser = require('../Controllers/getalluser')
+const removeuser = require('../Controllers/removeuser')
 const router = express.Router()
 
 // middleware that is specific to this router
@@ -24,6 +29,24 @@ router.post('/signup', (req, res) => {
 router.post('/checkemail',(req,res)=>{
     dupemail(req,res);
 })
+router.post('/sendmsg',(req,res)=>{
+   usersend(req,res);
+})
+router.get('/getmsg/:id',(req,res)=>{
+   userget(req,res);
+})
+router.get('/delete/:id',(req,res)=>{
+    removeuser(req,res);
+ })
+
+router.get('/getmsg',(req,res)=>{
+    getallmsg(req,res);
+ })
+
+ router.get('/getalluser',(req,res)=>{
+    getalluser(req,res);
+ })
+
 router.post('/Login',(req,res)=>{
    Login(req,res)
 })
