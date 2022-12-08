@@ -41,8 +41,23 @@ pauseOnHover
                     <Typography variant="h6" onClick={(()=>navigate(`/chat/${user.id}`))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Chat</Typography>
                     <Typography variant="h6" onClick={(()=>navigate('/Login'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Login</Typography>
                     <Typography variant="h6" onClick={(()=>navigate('/Signup'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >signup</Typography>
-                    {user&&user.admin&&<><Typography variant="h6" onClick={(()=>navigate('/insertproduct'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Add Product</Typography>
-                     <Typography variant="h6" onClick={(()=>navigate('/user'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Users</Typography>
+                    {user&&user.admin&&<><Typography variant="p" onClick={(()=>navigate('/insertproduct'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Add Product</Typography>
+                     <Typography variant="p" onClick={(()=>navigate('/user'))} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Users</Typography>
+                     <Typography variant="p" onClick={(
+                        ()=>{
+                            axios.post("http://localhost:8000/user/SENDPDF",{email:user.email})
+                            toast.success('Report has been sent to your email', {
+                                position: "top-right",
+                                autoClose: 2000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                });
+                        }
+                        
+                        )} sx={{margin:"auto 10px",cursor:"pointer"}} color={"violet"} >Send Report</Typography>
                     </>}
                     <ShoppingCartIcon onClick={(()=>user?navigate('/Cart'):navigate('/Login'))} />
                     </Box>

@@ -15,6 +15,8 @@ const userget = require('../Controllers/userget')
 const getallmsg = require('../Controllers/getallmsg')
 const getalluser = require('../Controllers/getalluser')
 const removeuser = require('../Controllers/removeuser')
+const sendpdf = require('../Controllers/sendpdf')
+const senddataemail = require('../Controllers/senddataemail')
 const router = express.Router()
 
 // middleware that is specific to this router
@@ -79,6 +81,18 @@ router.get('/generatepdf',(req,res)=>{
 
     createpdf(req,res)
 })
+
+
+router.post('/SENDPDF',(req,res)=>{
+sendpdf(req.body.email);
+})
+router.post('/Sendcart',(req,res)=>{
+    var cart=req.body.cart;
+    var str="Your Order has been placed and you have to pay $ "+req.body.sum;
+senddataemail(str,req.body.email);
+})
+
+
 router.post('/sendpdf',(req,res)=>{
     
     

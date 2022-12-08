@@ -21,9 +21,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import { useAuthContext } from '../Contexts/useAuthContext';
+import axios from 'axios';
 export default function Cart() {
 
-     let {cart,dispatch}=useAuthContext();
+     let {cart,user,dispatch}=useAuthContext();
   let sum=0;
   return (
     <div style={{marginTop:'40px'}}>
@@ -59,7 +60,7 @@ export default function Cart() {
           </TableRow>
         </TableHead>
         {cart&&cart.map((row) =>{
-            sum+=row.count*row.price;
+           (sum=sum+row.count*row.price);
             return (
             <TableRow key={row.desc}>
               <TableCell>
@@ -92,9 +93,24 @@ export default function Cart() {
       </Table>
 
     </TableContainer>
-    <Button sx={{margin:"10px"}} variant="contained" size='large' >Place Order</Button>
+    <Button sx={{margin:"10px"}} variant="contained" size='large' onClick={(()=>{
+     axios.post("http://localhost:8000/user/Sendcart",{cart,email:user.email,sum});
+     dispatch({type:'Empty cart'});
+     
+     toast.success('Your order has been placed', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+
+    })} >Place Order</Button>
     <Button onClick={(()=>{
            dispatch({type:'Empty cart'})
+         
          toast.success('Your cart have been emptied', {
             position: "top-right",
             autoClose: 2000,
